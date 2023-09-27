@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>QuickStart</title>
+        <script type="text/javascript" defer>
+            // define persistent state getters
+            async function frontend_perm_load() {
+                const response = await fetch("http://host.docker.internal:9101/v1.0/get/frontend_perm_count");
+                
+            };
+            async function backend_perm_load() {
+            };
+
+            var frontend_count = 0;
+            function frontend_temp_click() {
+                frontend_count += 1;
+                document.getElementByID("frontend_temp").textContent = frontend_count;
+            };
+            function frontend_perm_click() {
+            };
+            function backend_temp_click() {
+            };
+            function backend_perm_click() {
+            };
+
+            // load initial persistent states
+            document.getElementByID("frontend_perm").textContent = await frontend_perm_load();
+            document.getElementByID("backend_perm").textContent = await backend_perm_load();
+        </script>
+    </head>
+    <body>
+        <h1>Quick Start Functionalities</h1>
+        <button type="button" onclick="frontend_temp_click()">Frontend Temporary</button>
+        <p>Clicks: <a id="frontend_temp">0</a></p>
+        <button type="button" onclick="frontend_perm_click()">Frontend Permanent</button>
+        <p>Clicks: <a id="frontend_perm">0</a></p>
+        <button type="button" onclick="backend_temp_click()">Backend Temporary</button>
+        <p>Clicks: <a id="backend_temp">0</a></p>
+        <button type="button" onclick="backend_perm_click()">Backend Permanent</button>
+        <p>Clicks: <a id="backend_perm">0</a></p>
+    </body>
+</html>
